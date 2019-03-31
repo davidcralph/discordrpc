@@ -13,7 +13,7 @@ module.exports = class DiscordRPC extends Plugin {
       let timestamp = new Date().getTime();
 
       const setActivity = async () => {
-          switch (this.settings.get('timestamp') === true) {
+          switch (this.settings.get('timestamp')) {
               case true: {
                 uRPC.send('SET_ACTIVITY', {
                     pid: process.pid,
