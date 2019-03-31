@@ -1,6 +1,7 @@
 const Settings   = require('./Settings.jsx');
 const { React }  = require('powercord/webpack');
 const { Plugin } = require('powercord/entities');
+const { remote } = require('electron');
 
 module.exports = class DiscordRPC extends Plugin {
     startPlugin () {
@@ -142,6 +143,10 @@ module.exports = class DiscordRPC extends Plugin {
         }
       );
     }
+  }
+
+  pluginWillUnload() {
+    remote.getCurrentWindow().reload();
   }
 };
   
