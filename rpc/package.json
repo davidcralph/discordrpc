@@ -1,0 +1,7 @@
+{
+  "name": "discord-urpc",
+  "version": "1.0.4",
+  "description": "Fork of discord-urpc for use internally at LiquidBlast",
+  "author": "Rellfy",
+  "license": "MIT"
+}

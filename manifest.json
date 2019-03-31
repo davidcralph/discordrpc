@@ -1,0 +1,13 @@
+{
+    "name": "Discord RPC",
+    "version": "1.0.0",
+    "description": "Simple RPC inside of Discord itself!",
+    "author": "ohlookitsderpy",
+    "license": "MIT",
+    "repo": null,
+    "dependencies": [
+      "pc-settings",
+      "pc-commands"
+    ]
+  }
+  
