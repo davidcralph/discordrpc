@@ -1,10 +1,10 @@
 {
     "name": "Discord RPC",
     "version": "1.0.0",
-    "description": "Simple RPC inside of Discord itself!",
+    "description": "Discord RPC directly inside Discord!",
     "author": "ohlookitsderpy",
     "license": "MIT",
-    "repo": null,
+    "repo": "https://github.com/ohlookitsderpy/pc-discordrpc",
     "dependencies": [
       "pc-settings",
       "pc-commands"
