@@ -8,4 +8,4 @@ Discord RPC directly inside Discord! Controllable via settings menu and commands
 Download this repo, drag all files into a folder called ``pc-discordrpc`` in your Powercord plugins folder, then reload Discord.
 
 ## Screenshot
-<img src='https://i.imgur.com/Bc0xEPf.png'>
+<img src='https://i.imgur.com/djdv9b8.png'>
