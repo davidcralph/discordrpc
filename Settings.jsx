@@ -25,6 +25,7 @@ module.exports = class Settings extends React.Component {
   render () {
     const settings = this.state;
     const set = (key, value = !settings[key], defaultValue) => {
+      if (key === 'commandsEnabled') powercord.pluginManager.get('pc-discordrpc').modifyCommands();
       if (!value && defaultValue) value = defaultValue;
       this.settings.set(key, value);
       this.setState({ [key]: value });
@@ -103,14 +104,14 @@ module.exports = class Settings extends React.Component {
         </TextInput>
         </Category>
         <SwitchItem
-            note='Timestamp for the Discord RPC. (Requires reload)'
+            note='Timestamp for the Discord RPC.'
             value={settings.timestamp}
             onChange={() => set('timestamp')}
           >
             Timestamp
           </SwitchItem>
           <SwitchItem
-            note='Enable/Disable the commands for controlling the Discord RPC. (Requires reload)'
+            note='Enable/Disable the commands for controlling the Discord RPC.'
             value={settings.commandsEnabled}
             onChange={() => set('commandsEnabled')}
           >
