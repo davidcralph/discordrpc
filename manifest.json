@@ -5,9 +5,6 @@
     "author": "ohlookitsderpy",
     "license": "MIT",
     "repo": "https://github.com/ohlookitsderpy/pc-discordrpc",
-    "dependencies": [
-      "pc-settings",
-      "pc-commands"
-    ]
+    "dependencies": [ "pc-commands" ]
   }
   
