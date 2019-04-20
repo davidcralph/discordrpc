@@ -9,3 +9,6 @@ Download this repo, drag all files into a folder called ``discordrpc`` in your P
 
 ## Screenshot
 <img src='https://i.imgur.com/djdv9b8.png'>
+
+## Known Issues
+* Due to updates, sometimes it can go a bit funky and not load. Try spamming things into the boxes and CTRL + R to see if it works.
