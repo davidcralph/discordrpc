@@ -11,7 +11,7 @@ module.exports = class DiscordRPC extends Plugin {
     const DiscordRPC = require('./rpc/index.js');
 
     // eslint-disable-next-line object-property-newline
-    const uRPC      = new DiscordRPC({clientID: this.settings.get('clientid', null), debug: false }); //debug gang, lets not debug for now
+    const uRPC      = new DiscordRPC({ clientID: this.settings.get('clientid', null), debug: false }); // debug gang, lets not debug for now
     const timestamp = new Date().getTime();
 
     const setActivity = async () => {

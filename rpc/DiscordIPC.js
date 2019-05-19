@@ -1,52 +1,47 @@
-const EventEmitter               = require('events');
-const { encode, decode, getIPC } = require('./util.js');
+/* eslint-disable curly */
+const EventEmitter = require('events');
+const DiscordIPC = require('./DiscordIPC.js');
+const uuid = require('./uuid.js');
 
-/*
- * Codes Key:
- * HANDSHAKE: 0,
- * FRAME: 1,
- * CLOSE: 2,
- * PING: 3,
- * PONG: 4,
- */
-
-module.exports = class IPCTransport extends EventEmitter {
-  constructor (clientID) {
+module.exports = class DiscordRPC extends EventEmitter {
+  constructor ({ clientID, debug }) {
     super();
-    this.clientID = clientID;
-    this.socket = null;
-  }
+    this.debug = debug;
 
-  async connect () {
-    const socket = this.socket = await getIPC();
-    this.emit('open');
-    socket.write(encode(0, { v: 1, client_id: this.clientID }));
-    socket.pause();
-    socket.on('readable', () => {
-      decode(socket, ({ op, data }) => {
-        switch (op) {
-          case 3: this.send(data, 4);
-            break;
-          case 1:
-            if (!data) return;
-            this.emit('message', data);
-            break;
-          case 2: this.emit('close', data);
-            break;
-          default: break;
-        }
-      });
+    this.discordIPC = new DiscordIPC(clientID);
+
+    this.discordIPC.on('open', () => {
+      if (this.debug) console.log('[Discord IPC] Status: open');
     });
-    socket.on('close', this.onClose.bind(this));
-    socket.on('error', this.onClose.bind(this));
+
+    this.discordIPC.on('close', (event) => {
+      if (this.debug) console.log('[Discord IPC] Status: close', event);
+    });
+
+    this.discordIPC.on('error', (event) => {
+      if (this.debug) console.log('[Discord IPC] Error', event);
+    });
+
+    this.discordIPC.on('message', (event) => {
+      switch (event.evt) {
+        case 'READY':
+          if (this.debug) console.log('[Discord RPC] Status: ready');
+          this.emit('ready');
+          break;
+        default:
+          if (this.debug) console.log('[Discord IPC] Message', event);
+          break;
+      }
+    });
+
+    this.discordIPC.connect();
   }
 
-  onClose (e) { this.emit('close', e); }
-
-  send (data, op = 1) { this.socket.write(encode(op, data)); } // frame
-
-  close () {
-    this.send({}, 2); // close
-    this.socket.end();
+  send (cmd, args) {
+    this.discordIPC.send({
+      cmd,
+      args,
+      nonce: uuid()
+    });
   }
 };
