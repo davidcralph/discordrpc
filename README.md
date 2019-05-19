@@ -1,3 +1,5 @@
+## CURRENTLY MIGHT NOT WORK PROPERLY. IF YOU WANT TO TRY FIXING IT, PULL REQUESTS ARE FULLY WELCOME!
+
 # discordrpc
 Discord RPC directly inside Discord! Controllable via settings menu and commands.
 
